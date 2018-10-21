@@ -1,4 +1,19 @@
+/*----------------------------------------------------------
+ *				HTBLA-Leonding / Class: 2 AHIF
+ * ---------------------------------------------------------
+ * Exercise Number: 4
+ * Title:			Conditional Arithmetic
+ * Author:			Moritz Eichhorn
+ * ----------------------------------------------------------
+ * Description:
+ * It multiplies or adds every number from 0 to the
+ * maximum, that the user had put in, if the current number
+ * is a mutiple of 3 or 5.
+ * ----------------------------------------------------------
+ */
+
 #include <stdio.h>
+#include <limits.h>
 
 void readOperation(int* operation){
   do {
@@ -32,7 +47,26 @@ void add(int max)
   printResult(sum);
 }
 
-bool isOverflow
+// Wenn overflow dann return = 1 sonst 0
+int isOverflow(int max){
+  long result = LONG_MAX;
+  for(long i = max; i > 3; i--)
+  {
+    if((i % 3 == 0) || ( i % 5 == 0))
+    {
+      result /= i;
+    }
+  }
+
+  if(result >= 3)
+  {
+    return 0;
+  }
+  else
+  {
+    return 1;
+  }
+}
 
 void multiply(int max){
   long result = 1;
@@ -41,7 +75,7 @@ void multiply(int max){
   {
     for(int i = 3; i <= max; i++)
     {
-      if(()(i%3 == 0) || (i%5== 0)) && !())
+      if((i%3 == 0) || (i%5== 0))
       {
         result *= i;
       }
@@ -60,7 +94,14 @@ void organizeOperation(int operation, int max){
       add(max);
       break;
     case 2:
-      multiply(max);
+      if(isOverflow(max) == 0)
+      {
+        multiply(max);
+      }
+      else
+      {
+        printf("Number overflow\n");
+      }
       break;
   }
 }
